@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Jermain Dev - Full-stack developer and tech consultant based in Kigali, Rwanda. Specializing in web development, mobile apps, cloud solutions, and tech consulting.">
+    <meta name="keywords" content="Jermain, developer, portfolio, full-stack, React, Node.js, Kigali, Rwanda, tech consultant">
+    <meta name="author" content="Jermain">
+    <title>Jermain Dev | Full-Stack Developer & Tech Consultant</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf8;
+            color: #1a1a1a;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e9e5dd;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b9a28c;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(254, 252, 248, 0.96);
+            backdrop-filter: blur(14px);
+            z-index: 100;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #3a2c29, #b77b4b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2c2a28;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #b1622c;
+        }
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #2c2a28;
+        }
+
+        /* buttons */
+        .btn-primary {
+            background: #1f1c19;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-primary:hover {
+            background: #b1622c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1f1c19;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #1f1c19;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            background: #1f1c19;
+            color: white;
+            border-color: #1f1c19;
+        }
+
+        /* hero section */
+        .hero {
+            padding: 80px 0 60px;
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+            justify-content: space-between;
+        }
+        .hero-content {
+            flex: 1.2;
+        }
+        .hero-badge {
+            background: #e7dfd7;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #4a3525;
+        }
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+        .hero-highlight {
+            background: linear-gradient(120deg, #f5e7db, #f9e0cf);
+            padding: 0 8px;
+            display: inline-block;
+            border-radius: 12px;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #4b3f38;
+            max-width: 550px;
+            margin: 24px 0 32px;
+        }
+        .hero-image {
+            flex: 0.9;
+            text-align: center;
+        }
+        .avatar-placeholder {
+            background: linear-gradient(145deg, #dbc7b7, #c2aa96);
+            width: 320px;
+            height: 320px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .avatar-placeholder:hover {
+            transform: scale(1.02);
+        }
+        .avatar-placeholder i {
+            font-size: 8rem;
+            color: #2f241e;
+            opacity: 0.85;
+        }
+
+        /* section headings */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 48px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: #d9b48b;
+            border-radius: 4px;
+        }
+
+        /* about section */
+        .about-section {
+            padding: 40px 0 20px;
+        }
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            align-items: flex-start;
+        }
+        .about-text {
+            flex: 1.4;
+        }
+        .about-text p {
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+            color: #2d2824;
+            line-height: 1.6;
+        }
+        .about-stats {
+            flex: 1;
+            background: #faf7f2;
+            border-radius: 32px;
+            padding: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+        }
+        .stat-item {
+            margin-bottom: 28px;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #b1622c;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b5a4c;
+            margin-top: 4px;
+        }
+
+        /* services section */
+        .services-section {
+            background: #faf7f2;
+            border-radius: 48px;
+            padding: 60px 40px;
+            margin: 60px 0;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 20px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px 28px;
+            transition: 0.25s;
+            border: 1px solid #e9e0d8;
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+            border-color: #d9b48b;
+        }
+        .service-icon {
+            font-size: 3rem;
+            color: #b77b4b;
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .service-card p {
+            color: #5a4a3c;
+            line-height: 1.6;
+        }
+
+        /* contact section */
+        .contact-section {
+            padding: 40px 0 70px;
+        }
+        .contact-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+        }
+        .contact-info {
+            flex: 1;
+            background: #fefaf5;
+            border-radius: 40px;
+            padding: 36px;
+            border: 1px solid #ebe2d9;
+            transition: all 0.2s;
+        }
+        .contact-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 28px;
+            font-weight: 700;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+            font-size: 1rem;
+        }
+        .contact-detail i {
+            width: 36px;
+            font-size: 1.5rem;
+            color: #b77b4b;
+        }
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 32px;
+        }
+        .social-links a {
+            background: #f0e9e2;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #3f2c1f;
+            font-size: 1.4rem;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            background: #b1622c;
+            color: white;
+            transform: scale(1.05);
+        }
+        .contact-form {
+            flex: 1.2;
+            background: white;
+            border-radius: 40px;
+            padding: 36px;
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.05);
+            border: 1px solid #ebe2d9;
+        }
+        .contact-form h3 {
+            font-size: 1.6rem;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 28px;
+            border: 1.5px solid #e3d8ce;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            background: #fff;
+            transition: 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #b77b4b;
+            box-shadow: 0 0 0 3px rgba(183, 123, 75, 0.1);
+        }
+        .form-status {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            display: none;
+            font-weight: 500;
+        }
+        .form-status.success {
+            background: #e3f5ec;
+            color: #2d6a4f;
+            display: block;
+        }
+        .form-status.error {
+            background: #fff0ed;
+            color: #c0392b;
+            display: block;
+        }
+
+        /* footer */
+        footer {
+            text-align: center;
+            padding: 48px 0 32px;
+            border-top: 1px solid #e9e0d8;
+            margin-top: 20px;
+            color: #6e5e52;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                padding: 0 24px;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .avatar-placeholder {
+                width: 250px;
+                height: 250px;
+            }
+            .services-section {
+                padding: 40px 24px;
+            }
+        }
+        @media (max-width: 640px) {
+            .nav-flex {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .nav-links {
+                gap: 1.2rem;
+            }
+            .hero-grid {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .section-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+            }
+            .section-title {
+                text-align: center;
+                display: block;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .contact-wrap {
+                flex-direction: column;
+            }
+            .btn-outline {
+                padding: 8px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <a href="#home" class="logo" style="text-decoration: none;">Jermain Dev</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="about pot.html">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn-outline" style="padding: 8px 22px;">Hire Me</a>
+    </div>
+</nav>
+
+<main>
+    <!-- Home / Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fas fa-code"></i> full-stack developer</span>
+                <h1>Jermain <span class="hero-highlight">Dev</span><br>Code. Create. Elevate.</h1>
+                <p class="hero-desc">I build fast, scalable web apps and help founders turn ideas into reality. Based in Kigali, Rwanda — working worldwide.</p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="#contact" class="btn-primary">Let's work together <i class="fas fa-arrow-right"></i></a>
+                    <a href="#services" class="btn-outline">What I do</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="avatar-placeholder">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm Jermain, a passionate full-stack developer and tech architect with over 7 years of experience building digital solutions that matter. I believe great code solves real problems without adding complexity.</p>
+                    <p>My journey started with a curiosity for how things work, and evolved into a career helping startups, agencies, and businesses bring their ideas to life. I specialize in modern web technologies and clean, maintainable code.</p>
+                    <p>When I'm not coding, you'll find me mentoring young developers, contributing to open source, or exploring the vibrant tech community in Kigali, Rwanda.</p>
+                    <div style="margin-top: 28px;">
+                        <a href="#contact" class="btn-primary" style="background: #b77b4b;">Get in touch</a>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">7+</div>
+                        <div class="stat-label">Years of experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Projects delivered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Happy clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Client support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container services-section">
+            <h2 class="section-title" style="margin-bottom: 40px;">What I offer</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h3>Web Development</h3>
+                    <p>Full-stack web applications using React, Next.js, Node.js, and Python. Fast, responsive, and scalable solutions tailored to your needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile Apps</h3>
+                    <p>Cross-platform mobile development with React Native. One codebase for iOS and Android without compromising on quality.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <h3>Cloud & DevOps</h3>
+                    <p>AWS, Docker, and CI/CD pipeline setup. Deploy and scale your applications with best practices and automation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>Tech Consulting</h3>
+                    <p>Expert advice on tech stack selection, code reviews, and architecture decisions. Help your team ship better code faster.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Let's connect</h2>
+            <div class="contact-wrap">
+                <div class="contact-info">
+                    <h3><i class="fas fa-paper-plane"></i> Reach out</h3>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>jermainnkusi@gmail.com</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+250 782188992</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kigali, Rwanda</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Fri: 9AM - 6PM (CAT)</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" id="https://github.com/account" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        <a href="#" id="linkedinLink" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" id="twitterLink" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/jermain_4l/" id="instagramLink" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p style="margin-top: 32px; font-size: 0.85rem; color:#7f6a5a;">Available for freelance & full-time collaborations ✨</p>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Send a message</h3>
+                    <form id="contactForm">
+                        <input type="hidden" name="access_key" id="accessKey" value="c83e98a7-063b-4d4b-8fee-7c92a4d89406">
+                        <input type="hidden" name="subject" value="New message from Jermain's Portfolio">
+                        <input type="hidden" name="from_name" value="Jermain Portfolio">
+                        <input type="hidden" name="to_email" value="jermainnkusi@gmail.com">
+                        <input type="hidden" name="botcheck" value="">
+                        
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" name="message" placeholder="Tell me about your project or idea..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%;" id="submitBtn">Send message <i class="fas fa-paper-plane"></i></button>
+                        <div id="formStatus" class="form-status"></div>
+                    </form>
+                    <p style="font-size: 0.7rem; text-align: center; margin-top: 16px; color:#ab9b8d;">Your message is safe — I'll reply within 24h</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 Jermain — Built with <i class="fas fa-heart" style="color:#b77b4b;"></i> in Kigali, Rwanda</p>
+        <p style="margin-top: 12px; font-size: 0.8rem;">Full-stack developer · Tech consultant · Open for work</p>
+    </div>
+</footer>
+
+<script>
+    // ============================================================
+    // SOCIAL MEDIA LINKS - Replace with actual profiles
+    // ============================================================
+    const githubLink = document.getElementById('githubLink');
+    const linkedinLink = document.getElementById('linkedinLink');
+    const twitterLink = document.getElementById('twitterLink');
+    const instagramLink = document.getElementById('instagramLink');
+    
+    // Update these URLs with your real social profiles
+    if (githubLink) githubLink.href = 'https://github.com/jermain-dev';
+    if (linkedinLink) linkedinLink.href = 'https://linkedin.com/in/jermain-nkusi';
+    if (twitterLink) twitterLink.href = 'https://twitter.com/jermain_dev';
+    if (instagramLink) instagramLink.href = 'https://instagram.com/jermain.dev';
+    
+    // ============================================================
+    // SMOOTH SCROLLING + active highlight
+    // ============================================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === "#" || href === "") return;
+            const targetElem = document.querySelector(href);
+            if (targetElem) {
+                e.preventDefault();
+                targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (history.pushState) history.pushState(null, null, href);
+                else window.location.hash = href;
+            }
+        });
+    });
+    
+    // ============================================================
+    // CONTACT FORM HANDLER (Web3Forms with fallback friendly)
+    // ============================================================
+    const form = document.getElementById('contactForm');
+    const statusDiv = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+    const accessKeyInput = document.getElementById('accessKey');
+    
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Show sending state
+            statusDiv.textContent = '⏳ Sending message...';
+            statusDiv.className = 'form-status';
+            statusDiv.style.display = 'block';
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-pulse"></i>';
+            
+            const formData = new FormData(form);
+            // Ensure we have access_key
+            if (accessKeyInput && accessKeyInput.value) {
+                formData.set('access_key', accessKeyInput.value);
+            }
+            
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    statusDiv.textContent = '✅ Message sent! I will reply within 24 hours. Thanks!';
+                    statusDiv.className = 'form-status success';
+                    form.reset();
+                    setTimeout(() => {
+                        statusDiv.style.display = 'none';
+                        statusDiv.className = 'form-status';
+                    }, 6000);
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            } catch (error) {
+                console.error('Form error:', error);
+                statusDiv.textContent = '⚠️ Could not send via form. Please email me directly at jermainnkusi@gmail.com — I\'d love to hear from you!';
+                statusDiv.className = 'form-status error';
+                setTimeout(() => {
+                    statusDiv.style.display = 'none';
+                }, 7000);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send message <i class="fas fa-paper-plane"></i>';
+            }
+        });
+    }
+    
+    // Optional: add a small console greeting
+    console.log("%c✨ Jermain Portfolio | Let's build something great ✨", "color: #b77b4b; font-size: 14px; font-weight: bold;");
+    
+    // Add active link highlight on scroll (minimal)
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPos = window.scrollY + 120;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.style.color = '';
+            if (link.getAttribute('href') === `#${current}`) {
+                link.style.color = '#b1622c';
+                link.style.fontWeight = '600';
+            } else {
+                link.style.fontWeight = '500';
+            }
+        });
+    });
+</script>
+
+<!-- 
+    ✅ HOW TO MAKE THIS LIVE:
+    1. Web3Forms: Get your free access key from https://web3forms.com
+       - Replace the default key "c83e98a7-063b-4d4b-8fee-7c92a4d89406" with your own key
+       - The form will work instantly after that.
+    2. Social Media: Update the URLs in the JavaScript (lines ~300-305) with your actual profiles.
+    3. Custom domain: Just upload these files to any static hosting (Netlify, Vercel, GitHub Pages).
+    4. All set — your portfolio is ready to impress!
+-->
+</body>
+</html>
